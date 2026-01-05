@@ -1,76 +1,10 @@
 "use client";
 
-import React from "react";
 import Image from "next/image";
 import { Star, ShoppingCart } from "lucide-react";
 
-const products = [
-  {
-    id: 1,
-    name: "Classic Masala Peanuts",
-    description: "Crunchy roasted peanuts with authentic spices",
-    price: 149,
-    originalPrice: 199,
-    rating: 4.8,
-    reviews: 2847,
-    badge: "Trending",
-    badgeColor: "bg-orange-500",
-    discount: "25% OFF",
-    image: "/assets/Bun.jpg",
-  },
-  {
-    id: 2,
-    name: "Kerala Banana Chips",
-    description: "Crispy banana chips fried in coconut oil",
-    price: 129,
-    originalPrice: 169,
-    rating: 4.7,
-    reviews: 1923,
-    badge: "Healthy",
-    badgeColor: "bg-emerald-500",
-    discount: "24% OFF",
-    image: "/assets/open-chips.jpg",
-  },
-  {
-    id: 3,
-    name: "Bombay Mix Special",
-    description: "Classic Indian mix of sev peanuts & lentils",
-    price: 179,
-    originalPrice: 229,
-    rating: 4.9,
-    reviews: 3241,
-    badge: "Bestseller",
-    badgeColor: "bg-amber-500",
-    discount: "22% OFF",
-    image: "/assets/samosha.jpg",
-  },
-  {
-    id: 4,
-    name: "Family Snack Pack",
-    description: "4-in-1 combo pack of bestselling snacks",
-    price: 449,
-    originalPrice: 599,
-    rating: 4.8,
-    reviews: 1876,
-    badge: "Trending",
-    badgeColor: "bg-orange-500",
-    discount: "25% OFF",
-    image: "/assets/Chocolate.jpg",
-  },
-  {
-    id: 5,
-     name: "Family Snack Pack",
-    description: "4-in-1 combo pack of bestselling snacks",
-    price: 449,
-    originalPrice: 599,
-    rating: 4.8,
-    reviews: 1876,
-    badge: "Trending",
-    badgeColor: "bg-orange-500",
-    discount: "25% OFF",
-    image: "/assets/Chocolate.jpg",
-  },
-];
+// ✅ DATA IMPORT
+import { products } from "../../data/products";
 
 const Features = () => {
   return (
@@ -89,7 +23,7 @@ const Features = () => {
 
         {/* HORIZONTAL SCROLL */}
         <div className="flex gap-6 overflow-x-auto pb-4 [&::-webkit-scrollbar]:hidden">
-          {products.map((product) => (
+          {products.slice(0, 6).map((product) => (
             <div
               key={product.id}
               className="
@@ -157,7 +91,7 @@ const Features = () => {
                   {product.description}
                 </p>
 
-                {/* PRICE + BUTTON (NOW ALWAYS VISIBLE) */}
+                {/* PRICE + BUTTON */}
                 <div className="mt-auto flex items-center justify-between">
                   <div className="flex items-center gap-2">
                     <span className="text-[16px] font-bold text-[#231911]">

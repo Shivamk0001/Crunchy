@@ -6,9 +6,9 @@ import { Menu, X, Search, ShoppingCart, Settings } from "lucide-react";
 
 const navLinks = [
   { name: "Home", href: "/" },
-  { name: "Products", href: "#" },
-  { name: "Best Sellers", href: "#" },
-  { name: "Combos", href: "#" },
+  { name: "Products", href: "/products" },
+  { name: "Best Sellers", href: "/best-sellers" },
+  { name: "Combos", href: "/combos" },
 ];
 
 export default function Header() {
