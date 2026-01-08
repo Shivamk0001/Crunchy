@@ -25,7 +25,7 @@ export default function Header() {
       {/* Main Header */}
       <header className="w-full bg-white border-b sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-5 h-[60px] flex items-center justify-between">
-          
+
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2">
             <div className="w-9 h-9 rounded-full bg-orange-400 flex items-center justify-center text-white text-lg">
@@ -56,8 +56,18 @@ export default function Header() {
           {/* Right Icons */}
           <div className="flex items-center gap-5 text-black pr-1">
             <Search className="w-[22px] h-[22px] cursor-pointer hover:text-orange-500 transition" />
+
             <Settings className="w-[22px] h-[22px] cursor-pointer hover:text-orange-500 transition hidden sm:block" />
-            <ShoppingCart className="w-[22px] h-[22px] cursor-pointer hover:text-orange-500 transition" />
+
+            {/* Cart Icon */}
+            <Link href="/cart" className="relative">
+              <ShoppingCart className="w-[22px] h-[22px] cursor-pointer hover:text-orange-500 transition" />
+
+              {/* Cart Count (static for now) */}
+              <span className="absolute -top-2 -right-2 bg-orange-500 text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-bold">
+                0
+              </span>
+            </Link>
 
             {/* Mobile Menu Button */}
             <button
@@ -84,7 +94,7 @@ export default function Header() {
           onClick={() => setOpen(false)}
         />
 
-        {/* Sidebar (50% width) */}
+        {/* Sidebar */}
         <div
           className={`absolute left-0 top-0 h-full w-1/2 bg-white p-6 transform transition-transform duration-300 ${
             open ? "translate-x-0" : "-translate-x-full"
@@ -112,6 +122,15 @@ export default function Header() {
                 {link.name}
               </Link>
             ))}
+
+            {/* Mobile Cart Link */}
+            <Link
+              href="/cart"
+              onClick={() => setOpen(false)}
+              className="hover:text-orange-500 transition"
+            >
+              Cart
+            </Link>
           </nav>
         </div>
       </div>

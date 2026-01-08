@@ -5,8 +5,8 @@ import Link from "next/link";
 
 const Hero = () => {
   return (
-    <section className="relative w-full overflow-hidden bg-[#fdf2d8] pt-12 pb-24 md:pt-20 md:pb-32">
-      {/* Floating Snacks */}
+    <section className="relative w-full overflow-hidden bg-[#fdf2d8] pt-12 pb-32 md:pt-20 md:pb-48">
+      {/* Floating Snacks Elements */}
       <div className="absolute inset-0 pointer-events-none select-none z-0">
         <div className="absolute top-[15%] left-[6%] text-[40px] md:text-[60px] opacity-60 animate-float-slow">🥜</div>
         <div className="absolute top-[18%] right-[8%] text-[38px] md:text-[55px] opacity-70 -rotate-12 animate-float-slow [animation-delay:2s]">🍌</div>
@@ -36,17 +36,17 @@ const Hero = () => {
         </p>
 
         {/* Buttons */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
           <Link
-            href="/shop"
-            className="w-full sm:w-auto bg-[#f3a921] text-white px-8 py-3 rounded-xl font-bold text-[18px] shadow hover:shadow-md hover:bg-[#e29810] transition-all active:scale-95"
+            href="/products"
+            className="w-full sm:w-auto bg-[#f3a921] text-white px-10 py-4 rounded-xl font-bold text-[18px] shadow-lg hover:shadow-xl hover:bg-[#e29810] transition-all active:scale-95 flex items-center justify-center gap-2"
           >
-            Shop Now
+            Shop Now <span>→</span>
           </Link>
 
           <Link
             href="/best-sellers"
-            className="w-full sm:w-auto bg-white border border-gray-200 text-[#231911] px-8 py-3 rounded-xl font-bold text-[18px] shadow-sm hover:shadow hover:bg-gray-50 transition-all active:scale-95"
+            className="w-full sm:w-auto bg-white border border-gray-200 text-[#231911] px-10 py-4 rounded-xl font-bold text-[18px] shadow-sm hover:shadow-md hover:bg-gray-50 transition-all active:scale-95"
           >
             View Best Sellers
           </Link>
@@ -67,6 +67,24 @@ const Hero = () => {
             <span className="text-[13px] md:text-[15px] font-semibold text-[#231911]">Made in India</span>
           </div>
         </div>
+      </div>
+
+      {/* --- Wavy Bottom Curve (Optimized for your red dot path) --- */}
+      <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-[0]">
+        <svg 
+          className="relative block w-full h-[80px] md:h-[130px]" 
+          xmlns="http://www.w3.org/2000/svg" 
+          viewBox="0 0 1440 120" 
+          preserveAspectRatio="none"
+        >
+          <path 
+            d="M0,110 
+               C200,120 400,30 720,70 
+               C1000,110 1200,140 1440,70 
+               L1440,120 L0,120 Z" 
+            fill="#FFFFFF"
+          ></path>
+        </svg>
       </div>
 
       <style jsx global>{`
@@ -90,24 +108,7 @@ const Hero = () => {
         @media (max-width: 640px) {
           h1 { font-size: 32px !important; }
           p { font-size: 15px !important; }
-
-          /* Buttons full width on mobile */
-          .flex.flex-col.sm\\:flex-row > a { width: 100%; }
-
-          /* Trust badges inline row, smaller */
-          .flex.flex-wrap.items-center.justify-center > div {
-            flex: 1;
-            min-width: 0;
-            gap: 4px;
-          }
-          .flex.flex-wrap.items-center.justify-center > div div {
-            width: 24px;
-            height: 24px;
-            font-size: 12px;
-          }
-          .flex.flex-wrap.items-center.justify-center > div span {
-            font-size: 12px;
-          }
+          .pb-32 { padding-bottom: 5rem; }
         }
       `}</style>
     </section>

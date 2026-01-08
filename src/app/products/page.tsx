@@ -2,13 +2,17 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { Star, ChevronDown, ShoppingCart } from "lucide-react";
 import { products, categories } from "../../data/products";
-import Link from "next/link";
+import { useCart } from "../../context/CartContext"; // ✅ STEP 3 ADD
 
 const ProductsPage = () => {
+  const { addToCart } = useCart(); // ✅ STEP 3 ADD
+
   const [activeCategory, setActiveCategory] = useState("All Products");
   const [sortBy, setSortBy] = useState("Most Popular");
+  const [openSort, setOpenSort] = useState(false);
 
   const filteredProducts = products
     .filter(
@@ -35,7 +39,7 @@ const ProductsPage = () => {
 
         {/* HEADER */}
         <div className="mb-10">
-          <h1 className="text-[28px] md:text-[42px] font-black text-[#231911] flex items-center gap-2">
+          <h1 className="text-[28px] md:text-[42px] font-black text-[#231911]">
             🍿 All Products
           </h1>
           <p className="text-[#a89985] font-semibold">
@@ -46,7 +50,7 @@ const ProductsPage = () => {
         <div className="flex flex-col md:flex-row gap-8">
 
           {/* SIDEBAR */}
-          <aside className="w-full md:w-[220px] lg:w-[200px] shrink-0">
+          <aside className="w-full md:w-[220px] shrink-0">
             <div className="bg-white rounded-[24px] p-4 border sticky top-24">
               <h3 className="font-black text-[#231911] mb-4 text-lg">
                 Categories
@@ -75,17 +79,20 @@ const ProductsPage = () => {
           <main className="flex-1">
 
             {/* SORT */}
-            <div className="flex justify-end mb-6 relative group">
-              <div className="flex items-center gap-3 bg-white px-5 py-3 rounded-xl border cursor-pointer">
-                <span className="text-[#a89985] text-sm font-bold">
-                  Sort by:
-                </span>
+            <div className="flex justify-end mb-6 relative">
+              <button
+                onClick={() => setOpenSort(!openSort)}
+                className="flex items-center gap-3 bg-white px-5 py-3 rounded-xl border"
+              >
+                <span className="text-[#a89985] text-sm font-bold">Sort by:</span>
                 <span className="text-[#231911] font-black text-sm">
                   {sortBy}
                 </span>
                 <ChevronDown size={18} className="text-[#f3a921]" />
+              </button>
 
-                <div className="absolute top-full right-0 mt-2 w-56 bg-white rounded-xl shadow-lg border py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition z-50">
+              {openSort && (
+                <div className="absolute top-full right-0 mt-2 w-56 bg-white rounded-xl shadow-lg border py-2 z-50">
                   {[
                     "Most Popular",
                     "Price: Low to High",
@@ -93,14 +100,22 @@ const ProductsPage = () => {
                   ].map((opt) => (
                     <button
                       key={opt}
-                      onClick={() => setSortBy(opt)}
-                      className="w-full text-left px-5 py-2 text-sm font-bold text-[#7e7465] hover:bg-[#fdf2d8]"
+                      onClick={() => {
+                        setSortBy(opt);
+                        setOpenSort(false);
+                      }}
+                      className={`w-full text-left px-5 py-2 text-sm font-bold transition
+                        ${
+                          sortBy === opt
+                            ? "bg-[#fdf2d8] text-[#231911]"
+                            : "text-[#7e7465] hover:bg-[#fdf2d8]"
+                        }`}
                     >
                       {opt}
                     </button>
                   ))}
                 </div>
-              </div>
+              )}
             </div>
 
             {/* PRODUCTS GRID */}
@@ -111,28 +126,30 @@ const ProductsPage = () => {
                   className="group bg-white rounded-[26px] overflow-hidden border transition hover:-translate-y-1 hover:shadow-lg flex flex-col"
                 >
                   {/* Image */}
-                  <div className="relative aspect-square bg-[#f6f6f6]">
-                    <Image
-                      src={product.image}
-                      alt={product.name}
-                      fill
-                      className="object-cover transition duration-300 group-hover:scale-[1.04]"
-                    />
+                  <Link href={`/product/${product.id}`}>
+                    <div className="relative aspect-square bg-[#f6f6f6]">
+                      <Image
+                        src={product.image}
+                        alt={product.name}
+                        fill
+                        className="object-cover transition duration-300 group-hover:scale-[1.05]"
+                      />
 
-                    {product.discount && (
-                      <span className="absolute top-3 left-3 bg-[#b34031] text-white text-[10px] px-2 py-1 rounded">
-                        {product.discount}
-                      </span>
-                    )}
+                      {product.discount && (
+                        <span className="absolute top-3 left-3 bg-[#b34031] text-white text-[10px] px-2 py-1 rounded">
+                          {product.discount}
+                        </span>
+                      )}
 
-                    {product.badge && (
-                      <span
-                        className={`absolute top-3 right-3 ${product.badgeColor} text-white text-[9px] px-2 py-1 rounded-full`}
-                      >
-                        {product.badge}
-                      </span>
-                    )}
-                  </div>
+                      {product.badge && (
+                        <span
+                          className={`absolute top-3 right-3 ${product.badgeColor} text-white text-[9px] px-2 py-1 rounded-full`}
+                        >
+                          {product.badge}
+                        </span>
+                      )}
+                    </div>
+                  </Link>
 
                   {/* Info */}
                   <div className="p-4 flex flex-col flex-1">
@@ -144,9 +161,11 @@ const ProductsPage = () => {
                       </span>
                     </div>
 
-                    <h3 className="text-[15px] md:text-[16px] font-semibold text-[#231911] mb-0.5 leading-snug">
-                      {product.name}
-                    </h3>
+                    <Link href={`/product/${product.id}`}>
+                      <h3 className="text-[15px] md:text-[16px] font-semibold text-[#231911] mb-0.5 leading-snug hover:underline">
+                        {product.name}
+                      </h3>
+                    </Link>
 
                     <p className="text-[#9c8f7d] text-[12px] leading-relaxed mb-3 line-clamp-2 min-h-[34px]">
                       {product.description}
@@ -164,10 +183,14 @@ const ProductsPage = () => {
                         )}
                       </div>
 
-                      <button className="bg-[#f3a921] hover:bg-[#231911] text-white font-semibold text-sm md:text-[14px] px-5 py-2.5 rounded-2xl flex items-center justify-center gap-2 transition-all duration-300 shadow-sm hover:shadow-lg">
-  <ShoppingCart size={18} /> Add
-</button>
-
+                      {/* ✅ ADD TO CART */}
+                      <button
+                        onClick={() => addToCart(product)}
+                        className="bg-[#f3a921] hover:bg-[#ec8d3f] text-white font-semibold text-[14px] px-5 py-2.5 rounded-2xl flex items-center gap-2 transition-all"
+                      >
+                        <ShoppingCart size={18} />
+                        Add
+                      </button>
                     </div>
                   </div>
                 </div>

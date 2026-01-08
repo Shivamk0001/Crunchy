@@ -61,8 +61,9 @@ const offers = [
 const Offers = () => {
   return (
     <section className="bg-[#f8f6f2] py-16">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="text-center mb-12">
+      {/* Max width increased to 8xl for more horizontal spread */}
+      <div className="max-w-[1400px] mx-auto px-6">
+        <div className="text-center mb-10">
           <span className="text-[#f3a921] font-bold tracking-[0.25em] text-[11px] uppercase">
             Special Deals
           </span>
@@ -71,37 +72,40 @@ const Offers = () => {
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {/* Gap reduced to make cards feel wider */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {offers.map((offer, index) => (
             <div
               key={index}
-              className="relative overflow-hidden bg-white p-8 rounded-[32px] border border-gray-100 shadow-sm hover:shadow-lg transition-all flex flex-col min-h-[260px]"
+              className="relative overflow-hidden bg-white p-8 rounded-[32px] border border-gray-100 shadow-sm hover:shadow-lg transition-all flex flex-col min-h-[220px]"
             >
-              {/* Ghost Graphic */}
+              {/* All original graphics preserved */}
               {offer.graphic}
 
-              {/* Icon */}
-              <div
-                className={`${offer.iconBg} w-11 h-11 rounded-xl flex items-center justify-center mb-6 relative z-10`}
-              >
-                {offer.icon}
+              <div className="relative z-10">
+                {/* Icon */}
+                <div
+                  className={`${offer.iconBg} w-11 h-11 rounded-xl flex items-center justify-center mb-5`}
+                >
+                  {offer.icon}
+                </div>
+
+                {/* Content */}
+                <h3 className="text-[22px] font-black text-[#231911] mb-1">
+                  {offer.title}
+                </h3>
+                <p className="text-[#7e7465] text-[15px] leading-relaxed mb-6 max-w-[240px]">
+                  {offer.description}
+                </p>
+
+                {/* Button - w-fit preserved */}
+                <Link
+                  href={offer.href}
+                  className="mt-2 self-start inline-flex items-center justify-center px-6 py-2 rounded-xl border-2 border-[#f3a921] text-[#f3a921] font-bold text-[14px] hover:bg-[#f3a921] hover:text-white transition-all w-fit"
+                >
+                  {offer.buttonText}
+                </Link>
               </div>
-
-              {/* Content */}
-              <h3 className="text-[22px] font-black text-[#231911] mb-2 relative z-10">
-                {offer.title}
-              </h3>
-              <p className="text-[#7e7465] text-[15px] leading-relaxed mb-8 max-w-[220px] relative z-10">
-                {offer.description}
-              </p>
-
-              {/* Button */}
-              <Link
-                href={offer.href}
-                className="mt-auto inline-block px-6 py-2 rounded-xl border-2 border-[#f3a921] text-[#f3a921] font-bold text-[14px] hover:bg-[#f3a921] hover:text-white transition-all relative z-10"
-              >
-                {offer.buttonText}
-              </Link>
             </div>
           ))}
         </div>

@@ -29,7 +29,7 @@ const ReadyToCrunch = () => {
         {/* Buttons - Exact styles from image_e73e00.jpg */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
           <Link
-            href="/shop"
+            href="/products"
             className="group w-full sm:w-auto flex items-center justify-center gap-2 bg-[#b34031] text-white px-10 py-4 rounded-2xl font-bold text-[18px] shadow-lg hover:bg-[#963328] transition-all active:scale-95"
           >
             Shop Now
@@ -37,7 +37,7 @@ const ReadyToCrunch = () => {
           </Link>
 
           <Link
-            href="https://wa.me/your-number"
+            href="https://wa.me/+919876543210?text=I'm%20interested%20in%20placing%20an%20order%20from%20CrunchKart!"
             className="w-full sm:w-auto flex items-center justify-center gap-2 bg-transparent border-2 border-[#231911]/20 text-[#231911] px-10 py-4 rounded-2xl font-bold text-[18px] hover:bg-[#231911]/5 transition-all active:scale-95"
           >
             <MessageSquare className="w-5 h-5" />
