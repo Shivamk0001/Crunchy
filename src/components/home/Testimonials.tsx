@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import { Star } from "lucide-react";
 
 const testimonials = [
   {
@@ -36,63 +35,77 @@ const testimonials = [
 
 const Testimonials = () => {
   return (
-    <section className="bg-[#faf9f6] py-16 md:py-24">
-      <div className="max-w-[1300px] mx-auto px-4 md:px-6">
-
-        {/* Header */}
-        <div className="text-center mb-10 md:mb-14">
-          <span className="text-[#f3a921] font-bold uppercase tracking-[0.2em] text-[11px]">
-            Customer Love
-          </span>
-          <h2 className="text-[30px] md:text-[44px] font-extrabold text-[#231911] mt-1">
+    // Explicitly set bg-white so it doesn't turn black
+    <section className="py-16 bg-[#f7f6f2]"> 
+      <div className="container mx-auto px-4">
+        
+        {/* Header - Matches image spacing */}
+        <div className="text-center mb-12">
+          <p className="text-[#f3a921] font-bold uppercase tracking-[0.2em] text-[11px] mb-2">
+            CUSTOMER LOVE
+          </p>
+          <h2 className="text-[32px] md:text-[44px] font-extrabold text-[#231911]">
             What Our Customers Say
           </h2>
         </div>
 
-        {/* ================= TESTIMONIALS LIST: STACKED ON MOBILE, GRID ON DESKTOP ================= */}
-        <div className="flex flex-col gap-6 md:grid md:grid-cols-4 md:gap-5">
+        {/* Grid - Exact classes from your DevTools image */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {testimonials.map((item, index) => (
             <div
               key={index}
-              className="bg-white p-6 md:p-8 rounded-[26px] md:rounded-[28px] shadow border border-gray-100 flex flex-col justify-between hover:-translate-y-1 transition duration-300"
+              // Exact classes: bg-card (white), rounded-2xl, shadow-soft, hover-lift, animate-slide-up
+             className="bg-white rounded-2xl p-6 border border-gray-100 flex flex-col justify-between
+shadow-[0_8px_30px_rgba(0,0,0,0.04)]
+hover:shadow-[0_16px_40px_rgba(0,0,0,0.10)]
+transition-shadow duration-300"
+              style={{ animationDelay: "0s" }}
             >
               <div>
-                {/* Quote Icon */}
-                <div className="text-[#faedd1] mb-4 md:mb-5">
-                  <svg width="32" height="24" viewBox="0 0 40 30" fill="currentColor">
-                    <path d="M0 17.5V30H12.5V17.5H5C5 10 10 7.5 12.5 5V0C5 0 0 5 0 17.5ZM25 17.5V30H37.5V17.5H30C30 10 35 7.5 37.5 5V0C30 0 25 5 25 17.5Z" />
-                  </svg>
-                </div>
+                {/* SVG Quote Icon - Matching your DevTools path exactly */}
+                <svg 
+                  xmlns="http://www.w3.org/2000/svg" 
+                  width="24" height="24" viewBox="0 0 24 24" 
+                  fill="none" stroke="currentColor" strokeWidth="2" 
+                  strokeLinecap="round" strokeLinejoin="round" 
+                  className="lucide lucide-quote w-8 h-8 text-[#f3a921]/20 mb-4"
+                >
+                  <path d="M16 3a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2 1 1 0 0 1 1 1v1a2 2 0 0 1-2 2 1 1 0 0 0-1 1v2a1 1 0 0 0 1 1 6 6 0 0 0 6-6V5a2 2 0 0 0-2-2z"></path>
+                  <path d="M5 3a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2 1 1 0 0 1 1 1v1a2 2 0 0 1-2 2 1 1 0 0 0-1 1v2a1 1 0 0 0 1 1 6 6 0 0 0 6-6V5a2 2 0 0 0-2-2z"></path>
+                </svg>
 
-                {/* Stars */}
-                <div className="flex gap-1 mb-4 md:mb-5">
+                {/* Stars - Exact flex gap-1 mb-4 */}
+                <div className="flex gap-1 mb-4">
                   {[...Array(item.stars)].map((_, i) => (
-                    <Star
+                    <svg 
                       key={i}
-                      size={16}
-                      fill="#f3a921"
-                      color="#f3a921"
-                      strokeWidth={0}
-                    />
+                      xmlns="http://www.w3.org/2000/svg" 
+                      width="24" height="24" viewBox="0 0 24 24" 
+                      fill="none" stroke="currentColor" strokeWidth="2" 
+                      strokeLinecap="round" strokeLinejoin="round" 
+                      className="lucide lucide-star w-4 h-4 fill-[#f3a921] text-[#f3a921]"
+                    >
+                      <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                    </svg>
                   ))}
                 </div>
 
                 {/* Quote Text */}
-                <p className="text-[#5a4d41] text-[15px] leading-[1.6] mb-8">
+                <p className="text-[#5a4d41] text-[15px] leading-[1.6] mb-8 font-medium">
                   "{item.quote}"
                 </p>
               </div>
 
-              {/* Author Info */}
-              <div className="flex items-center gap-4 border-t pt-5">
+              {/* Author Section */}
+              <div className="flex items-center gap-4">
                 <div className="w-11 h-11 rounded-full bg-[#faedd1] flex items-center justify-center text-[#b4892c] font-bold text-[13px]">
                   {item.initials}
                 </div>
                 <div>
-                  <p className="text-[#231911] font-bold text-[15px]">
+                  <p className="text-[#231911] font-bold text-[15px] leading-tight">
                     {item.author}
                   </p>
-                  <p className="text-[#a89985] text-[13px]">
+                  <p className="text-[#a89985] text-[13px] mt-0.5">
                     {item.location}
                   </p>
                 </div>

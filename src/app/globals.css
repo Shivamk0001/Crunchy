@@ -1,10 +1,20 @@
 @import "tailwindcss";
 
+/* ===============================
+   ROOT THEME VARIABLES
+================================ */
 :root {
   --background: #ffffff;
   --foreground: #171717;
+
+  /* OFFER BAR COLORS */
+  --offer-bg-white: #ffffff;
+  --offer-bg-skiny: #fdf2d8;
 }
 
+/* ===============================
+   TAILWIND THEME MAPPING
+================================ */
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -12,6 +22,7 @@
   --font-mono: var(--font-geist-mono);
 }
 
+/* DARK MODE */
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
@@ -23,4 +34,39 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+/* =========================================
+   NEW: RIBBON FLOAT & TILT ANIMATION
+   (Tedha bhi rahega aur upar-neeche bhi hoga)
+============================================ */
+@keyframes floatRibbon {
+  0%, 100% {
+    /* Neeche aur Tedha */
+    transform: translateY(0) rotate(-1deg);
+  }
+  50% {
+    /* Upar aur Tedha */
+    transform: translateY(-8px) rotate(-1deg);
+  }
+}
+
+.animate-float-ribbon {
+  display: inline-block;
+  will-change: transform;
+  /* 3 seconds loop, smooth movement */
+  animation: floatRibbon 3s ease-in-out infinite;
+}
+
+/* ===============================
+   OFFER BAR BLINK ANIMATION
+================================ */
+@keyframes offerBlink {
+  0% { background-color: var(--offer-bg-white); }
+  50% { background-color: var(--offer-bg-skiny); }
+  100% { background-color: var(--offer-bg-white); }
+}
+
+.animate-offer-blink {
+  animation: offerBlink 1s infinite;
 }

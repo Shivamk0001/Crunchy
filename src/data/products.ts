@@ -7,11 +7,21 @@ export interface Product {
   rating: number;
   reviews: number;
   discount: string;
-  badge: string;
-  badgeColor: string;
+  badge: "Trending" | "Bestseller" | "Healthy" | "New" | "Popular";
+  badgeColor: string; // Tailwind class like 'bg-red-600'
   image: string;
+  hoverImage: string;
   category: string;
 }
+
+// ✅ Isko export kar diya hai taaki ProductCard me error na aaye
+export const badgeStyles: Record<string, string> = {
+  Trending: "bg-red-600",
+  Bestseller: "bg-orange-500",
+  Healthy: "bg-green-600",
+  New: "bg-blue-500",
+  Popular: "bg-purple-600",
+};
 
 export const categories = [
   "All Products",
@@ -34,6 +44,7 @@ export const products: Product[] = [
     badge: "Trending",
     badgeColor: "bg-red-600",
     image: "/assets/Bun.jpg",
+    hoverImage: "/assets/bun-hover.jpg",
     category: "Peanuts",
   },
   {
@@ -48,6 +59,7 @@ export const products: Product[] = [
     badge: "Bestseller",
     badgeColor: "bg-yellow-500",
     image: "/assets/Bun.jpg",
+    hoverImage: "/assets/bun-hover.jpg",
     category: "Peanuts",
   },
   {
@@ -61,7 +73,8 @@ export const products: Product[] = [
     discount: "23% OFF",
     badge: "Healthy",
     badgeColor: "bg-green-600",
-    image: "/assets/open-chips.jpg",
+    image: "/assets/chips.jpg",
+    hoverImage: "/assets/open-chips.jpg",
     category: "Banana Chips",
   },
   {
@@ -75,7 +88,8 @@ export const products: Product[] = [
     discount: "26% OFF",
     badge: "New",
     badgeColor: "bg-green-500",
-    image: "/assets/open-chips.jpg",
+    image: "/assets/chips.jpg",
+    hoverImage: "/assets/open-chips.jpg",
     category: "Banana Chips",
   },
   {
@@ -90,6 +104,7 @@ export const products: Product[] = [
     badge: "Bestseller",
     badgeColor: "bg-yellow-500",
     image: "/assets/samosha.jpg",
+    hoverImage: "/assets/samosha-hover.jpg",
     category: "Combos",
   },
   {
@@ -104,6 +119,7 @@ export const products: Product[] = [
     badge: "Trending",
     badgeColor: "bg-red-600",
     image: "/assets/Pototo-Chips.jpg",
+    hoverImage: "/assets/pototo-chips-hover.jpg",
     category: "Combos",
   },
   {
@@ -118,6 +134,7 @@ export const products: Product[] = [
     badge: "Popular",
     badgeColor: "bg-blue-600",
     image: "/assets/Chocolate.jpg",
+    hoverImage: "/assets/chocolate-hover.jpg",
     category: "Combo Packs",
   },
   {
@@ -132,6 +149,7 @@ export const products: Product[] = [
     badge: "Bestseller",
     badgeColor: "bg-yellow-500",
     image: "/assets/Chocolate.jpg",
+    hoverImage: "/assets/chocolate-hover.jpg",
     category: "Combo Packs",
   },
   {
@@ -146,6 +164,7 @@ export const products: Product[] = [
     badge: "Trending",
     badgeColor: "bg-red-600",
     image: "/assets/Chocolate.jpg",
+    hoverImage: "/assets/chocolate-hover.jpg",
     category: "Combo Packs",
   },
   {
@@ -160,6 +179,7 @@ export const products: Product[] = [
     badge: "Healthy",
     badgeColor: "bg-green-600",
     image: "/assets/Chocolate.jpg",
+    hoverImage: "/assets/chocolate-hover.jpg",
     category: "Combo Packs",
   },
 ];
