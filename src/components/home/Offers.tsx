@@ -15,10 +15,11 @@ const offers = [
     graphic: (
       <Gift
         className="
-          absolute top-5 right-6
-          w-28 h-28
+          absolute top-4 right-4
+          w-20 h-20
+          md:w-28 md:h-28
           text-[#231911]
-          opacity-[0.06]
+          opacity-[0.05] md:opacity-[0.06]
           pointer-events-none
         "
         strokeWidth={1.5}
@@ -35,10 +36,11 @@ const offers = [
     graphic: (
       <Percent
         className="
-          absolute top-5 right-6
-          w-28 h-28
+          absolute top-4 right-4
+          w-20 h-20
+          md:w-28 md:h-28
           text-[#231911]
-          opacity-[0.06]
+          opacity-[0.05] md:opacity-[0.06]
           pointer-events-none
         "
         strokeWidth={1.5}
@@ -55,10 +57,11 @@ const offers = [
     graphic: (
       <Truck
         className="
-          absolute top-4 right-6
-          w-32 h-32
+          absolute top-3 right-4
+          w-24 h-24
+          md:w-32 md:h-32
           text-[#231911]
-          opacity-[0.06]
+          opacity-[0.05] md:opacity-[0.06]
           pointer-events-none
         "
         strokeWidth={1.5}
@@ -73,14 +76,14 @@ const Offers = () => {
       <div className="max-w-[1400px] mx-auto px-6">
         {/* HEADER */}
         <div className="text-center mb-12 md:mb-14">
-  <span className="block text-[#f3a921] font-semibold tracking-[0.1em] text-[14px] uppercase">
-    Special Deals
-  </span>
+          <span className="block text-[#f3a921] font-semibold tracking-[0.1em] text-[14px] uppercase">
+            Special Deals
+          </span>
 
-  <h2 className="text-[40px] md:text-[52px] font-black text-[#231911] leading-tight tracking-tight">
-    Current Offers
-  </h2>
-</div>
+          <h2 className="text-[40px] md:text-[52px] font-black text-[#231911] leading-tight tracking-tight">
+            Current Offers
+          </h2>
+        </div>
 
         {/* GRID */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-5">
@@ -90,14 +93,14 @@ const Offers = () => {
               className="
                 group relative bg-white
                 rounded-[32px]
-                px-8 py-6 md:px-9 md:py-6
+                px-7 py-6 md:px-9 md:py-6
                 overflow-hidden
                 shadow-[0_6px_24px_rgba(0,0,0,0.05)]
                 hover:shadow-[0_22px_45px_rgba(0,0,0,0.12)]
                 hover:-translate-y-2
                 transition-all duration-500
                 flex flex-col
-                min-h-[220px] md:min-h-[230px]
+                min-h-[210px] md:min-h-[230px]
               "
             >
               {/* GHOST ICON */}
@@ -106,17 +109,17 @@ const Offers = () => {
               <div className="relative z-10 flex flex-col h-full">
                 {/* ICON */}
                 <div
-                  className={`${offer.iconBg} w-14 h-14 rounded-2xl flex items-center justify-center mb-5 shadow-sm`}
+                  className={`${offer.iconBg} w-14 h-14 rounded-2xl flex items-center justify-center mb-4 shadow-sm`}
                 >
                   {offer.icon}
                 </div>
 
                 {/* TEXT */}
-                <h3 className="text-[23px] font-black text-[#231911] leading-tight mb-2">
+                <h3 className="text-[22px] md:text-[23px] font-black text-[#231911] leading-tight mb-2">
                   {offer.title}
                 </h3>
 
-                <p className="text-[#7e7465] text-[15px] leading-relaxed mb-6 max-w-[260px]">
+                <p className="text-[#7e7465] text-[14px] md:text-[15px] leading-relaxed mb-5 max-w-[260px]">
                   {offer.description}
                 </p>
 
@@ -126,11 +129,11 @@ const Offers = () => {
                     href={offer.href}
                     className="
                       inline-flex items-center justify-center
-                      px-7 py-2.5
+                      px-6 py-2.5
                       rounded-2xl
                       border-2 border-[#f3a921]
                       text-[#f3a921]
-                      font-bold text-[15px]
+                      font-bold text-[14px] md:text-[15px]
                       transition-all duration-300
                       active:scale-95
                       group-hover:bg-[#f3a921]

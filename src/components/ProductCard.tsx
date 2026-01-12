@@ -14,7 +14,7 @@ export const ProductCard = ({
 }) => {
   return (
     <div
-      className="flex-shrink-0 w-[280px] snap-start animate-slide-up"
+      className="flex-shrink-0 w-[88vw] sm:w-[280px] snap-start animate-slide-up"
       style={{ animationDelay: `${index ? index * 0.05 : 0}s` }}
     >
       <article

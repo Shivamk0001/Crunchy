@@ -8,8 +8,8 @@ import { Menu, X, Search, ShoppingCart, Settings } from "lucide-react";
 const navLinks = [
   { name: "Home", href: "/" },
   { name: "Products", href: "/products" },
-  { name: "Best Sellers", href: "/best-sellers" },
-  { name: "Combos", href: "/combos" },
+  { name: "Best Sellers", href: "/products?filter=bestseller" },
+  { name: "Combos", href: "/products?category=Combos" },
 ];
 
 // Exact colors from your video/image

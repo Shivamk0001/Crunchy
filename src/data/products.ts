@@ -8,13 +8,13 @@ export interface Product {
   reviews: number;
   discount: string;
   badge: "Trending" | "Bestseller" | "Healthy" | "New" | "Popular";
-  badgeColor: string; // Tailwind class like 'bg-red-600'
+  badgeColor: string;
   image: string;
   hoverImage: string;
   category: string;
 }
 
-// ✅ Isko export kar diya hai taaki ProductCard me error na aaye
+/* Badge color mapping (ProductCard use karta hai) */
 export const badgeStyles: Record<string, string> = {
   Trending: "bg-red-600",
   Bestseller: "bg-orange-500",
@@ -23,10 +23,12 @@ export const badgeStyles: Record<string, string> = {
   Popular: "bg-purple-600",
 };
 
+/* Categories – WAFERS added */
 export const categories = [
   "All Products",
   "Peanuts",
   "Banana Chips",
+  "Wafers",
   "Combos",
   "Combo Packs",
 ];
@@ -57,9 +59,9 @@ export const products: Product[] = [
     reviews: 1934,
     discount: "24% OFF",
     badge: "Bestseller",
-    badgeColor: "bg-yellow-500",
-    image: "/assets/Bun.jpg",
-    hoverImage: "/assets/bun-hover.jpg",
+    badgeColor: "bg-orange-500",
+    image: "/assets/pepper-peanuts.jpg",
+    hoverImage: "/assets/bun.jpg",
     category: "Peanuts",
   },
   {
@@ -87,7 +89,7 @@ export const products: Product[] = [
     reviews: 987,
     discount: "26% OFF",
     badge: "New",
-    badgeColor: "bg-green-500",
+    badgeColor: "bg-blue-500",
     image: "/assets/chips.jpg",
     hoverImage: "/assets/open-chips.jpg",
     category: "Banana Chips",
@@ -102,7 +104,7 @@ export const products: Product[] = [
     reviews: 3241,
     discount: "22% OFF",
     badge: "Bestseller",
-    badgeColor: "bg-yellow-500",
+    badgeColor: "bg-orange-500",
     image: "/assets/samosha.jpg",
     hoverImage: "/assets/samosha-hover.jpg",
     category: "Combos",
@@ -120,7 +122,7 @@ export const products: Product[] = [
     badgeColor: "bg-red-600",
     image: "/assets/Pototo-Chips.jpg",
     hoverImage: "/assets/pototo-chips-hover.jpg",
-    category: "Combos",
+    category: "Wafers",
   },
   {
     id: 7,
@@ -132,7 +134,7 @@ export const products: Product[] = [
     reviews: 1120,
     discount: "22% OFF",
     badge: "Popular",
-    badgeColor: "bg-blue-600",
+    badgeColor: "bg-purple-600",
     image: "/assets/Chocolate.jpg",
     hoverImage: "/assets/chocolate-hover.jpg",
     category: "Combo Packs",
@@ -147,7 +149,7 @@ export const products: Product[] = [
     reviews: 2140,
     discount: "23% OFF",
     badge: "Bestseller",
-    badgeColor: "bg-yellow-500",
+    badgeColor: "bg-orange-500",
     image: "/assets/Chocolate.jpg",
     hoverImage: "/assets/chocolate-hover.jpg",
     category: "Combo Packs",
