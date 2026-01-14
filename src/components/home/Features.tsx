@@ -2,6 +2,7 @@
 
 import { products } from "@/src/data/products";
 import { ProductCard } from "../ProductCard";
+
 const Features = () => {
   const selectedIds = [1, 3, 6, 5, 8, 9];
 
@@ -22,15 +23,23 @@ const Features = () => {
           </h2>
         </div>
 
+        {/* SCROLLABLE CONTAINER */}
         <div
-  className="flex gap-6 overflow-x-auto snap-x snap-mandatory px-4 pb-12"
-  style={{ scrollbarWidth: "none" }}
->
-  {featuredProducts.map((product, i) => (
-    <ProductCard key={product.id} product={product} index={i} />
-  ))}
-</div>
-
+          className="flex gap-6 overflow-x-auto snap-x snap-mandatory px-4 pb-12 no-scrollbar"
+          style={{ 
+            scrollbarWidth: "none", 
+            msOverflowStyle: "none" 
+          }}
+        >
+          {featuredProducts.map((product, i) => (
+            /* MAiN FIX: Added min-w and max-w here to lock the size 
+               w-[280px] ya [320px] aap apni design ke hisaab se adjust kar sakte hain
+            */
+            <div key={product.id} className="min-w-[280px] md:min-w-[320px] snap-start">
+              <ProductCard product={product} index={i} />
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );

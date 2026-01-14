@@ -29,7 +29,7 @@ export default function Header() {
       </div>
 
       {/* 🧭 MAIN HEADER */}
-      <header className="sticky top-0 z-40 w-full bg-white/95 backdrop-blur-md border-b border-gray-200">
+      <header className="sticky top-0 z-40 w-full bg-white/100 backdrop-blur-md border-b border-gray-200">
         <nav className="container mx-auto px-4">
           <div className="flex items-center justify-between h-16">
             
@@ -43,7 +43,7 @@ export default function Header() {
               </span>
             </Link>
 
-            {/* Desktop Nav - Matching your Video spacing and Boldness */}
+            {/* Desktop Nav */}
             <div className="hidden md:flex items-center gap-12">
               {navLinks.map((link) => {
                 const isActive = pathname === link.href;
@@ -56,32 +56,34 @@ export default function Header() {
                     }`}
                   >
                     <span>{link.name}</span>
-                    {/* Sliding Underline Animation (from video) */}
                     <span className={`absolute -bottom-1 left-0 h-0.5 bg-[#f4a922] transition-all duration-300 ${isActive ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
                   </Link>
                 );
               })}
             </div>
 
-            {/* Right Icons (Settings added back) */}
+            {/* Right Icons */}
             <div className="flex items-center gap-2 sm:gap-4">
+              {/* Search - Desktop only */}
               <button className="hidden sm:flex h-10 w-10 items-center justify-center rounded-lg hover:bg-orange-50 transition">
                 <Search className={ICON_STYLE} />
               </button>
 
-              <Link href="/settings">
+              {/* SETTINGS - ISME CHANGE KIYA HAI (MOBILE PE NAHI DIKHEGA) */}
+              <Link href="/settings" className="hidden sm:block">
                 <button className="h-10 w-10 flex items-center justify-center rounded-lg hover:bg-orange-50 transition">
                   <Settings className={ICON_STYLE} />
                 </button>
               </Link>
 
+              {/* Cart - Mobile aur Desktop dono pe dikhega */}
               <Link href="/cart" className="relative">
                 <button className="h-10 w-10 flex items-center justify-center rounded-lg hover:bg-orange-50 transition">
                   <ShoppingCart className={ICON_STYLE} />
                 </button>
               </Link>
 
-              {/* Mobile Menu Button */}
+              {/* Mobile Menu Button - Sirf Mobile pe dikhega */}
               <button
                 onClick={() => setOpen(true)}
                 className="h-10 w-10 flex items-center justify-center rounded-lg hover:bg-orange-50 transition md:hidden"
@@ -93,7 +95,7 @@ export default function Header() {
         </nav>
       </header>
 
-      {/* 📱 MOBILE SIDEBAR (One Solid Clean Panel) */}
+      {/* 📱 MOBILE SIDEBAR */}
       <div className={`fixed inset-0 z-50 ${open ? "visible" : "invisible"}`}>
         <div
           className={`absolute inset-0 bg-black/40 backdrop-blur-sm transition-opacity duration-300 ${

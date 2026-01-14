@@ -13,16 +13,18 @@ export const ProductCard = ({
   index?: number;
 }) => {
   return (
+    // h-full add kiya taaki card ki height container ke barabar rahe
     <div
-      className="flex-shrink-0 w-[88vw] sm:w-[280px] snap-start animate-slide-up"
+      className="w-full h-full animate-slide-up"
       style={{ animationDelay: `${index ? index * 0.05 : 0}s` }}
     >
       <article
         className="
-          group relative bg-white rounded-[32px] overflow-hidden
+          group relative bg-white rounded-[22px] overflow-hidden
           shadow-[0_8px_28px_rgba(0,0,0,0.08)]
           transition-all duration-500
           hover:-translate-y-2 hover:shadow-[0_26px_60px_rgba(0,0,0,0.16)]
+          flex flex-col h-full w-full
         "
       >
         {/* HEART BUTTON */}
@@ -34,8 +36,8 @@ export const ProductCard = ({
         </button>
 
         {/* RIBBON */}
-        <div className="absolute top-5 -left-1 z-20 animate-float-ribbon transform rotate-[-3deg]">
-          <div className="bg-[#e33f29] text-white px-5 py-1.5 text-[14px] font-black shadow-xl flex items-center justify-center min-w-[70px]">
+        <div className="absolute top-5 -left-1 z-20 animate-float-ribbon rotate-[-3deg]">
+          <div className="bg-[#e33f29] text-white px-5 py-1.5 text-[14px] font-black shadow-xl min-w-[70px] text-center">
             {product.discount}
           </div>
           <div className="w-0 h-0 border-t-[8px] border-t-[#a12d1d] border-l-[8px] border-l-transparent absolute -bottom-2 left-0" />
@@ -56,8 +58,8 @@ export const ProductCard = ({
           )}
         </div>
 
-        {/* IMAGE */}
-        <div className="relative aspect-square overflow-hidden bg-[#F3F4F6]">
+        {/* IMAGE AREA - aspect-square ensures consistency */}
+        <div className="relative aspect-square overflow-hidden bg-[#F3F4F6] w-full">
           <Image
             src={product.image}
             alt={product.name}
@@ -72,8 +74,8 @@ export const ProductCard = ({
           />
         </div>
 
-        {/* CONTENT */}
-        <div className="p-4 pt-3">
+        {/* CONTENT - flex-1 and flex-col will fix alignment */}
+        <div className="p-4 pt-3 flex flex-col flex-1">
           {/* Rating */}
           <div className="flex items-center gap-1 text-[#f3a921] mb-1">
             <Star size={13} fill="currentColor" strokeWidth={0} />
@@ -91,12 +93,12 @@ export const ProductCard = ({
           </h3>
 
           {/* Description */}
-          <p className="text-[#9c8f7d] text-[13px] mt-0.5 leading-relaxed line-clamp-1">
+          <p className="text-[#9c8f7d] text-[13px] mt-0.5 leading-relaxed line-clamp-2">
             {product.description}
           </p>
 
-          {/* Price + Button */}
-          <div className="flex items-center justify-between mt-3">
+          {/* PRICE + ADD - mt-auto keeps buttons aligned at bottom */}
+          <div className="flex items-center justify-between mt-auto pt-3">
             <div className="flex items-baseline gap-2">
               <span className="text-[20px] font-bold text-[#231911]">
                 ₹{product.price}
@@ -108,7 +110,7 @@ export const ProductCard = ({
 
             <Link
               href={`/products#product-${product.id}`}
-              className="flex items-center gap-2 bg-[#f3a921] text-black text-[14px] font-semibold px-5 py-2 rounded-xl transition-all duration-300 hover:brightness-105 active:scale-95 shadow-md"
+              className="flex items-center gap-2 bg-[#f3a921] text-black text-[14px] font-semibold px-5 py-2 rounded-xl transition-all duration-300 hover:brightness-105 active:scale-95 shadow-md shrink-0"
             >
               <ShoppingCart size={16} />
               Add
