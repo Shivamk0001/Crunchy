@@ -4,8 +4,8 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { ChevronDown, Filter, X, Search } from "lucide-react";
-import { products, categories } from "../../data/products";
-import { ProductCard } from "../../components/ProductCard";
+import { products, categories } from "../../../data/products";
+import { ProductCard } from "../../../components/ProductCard";
 
 const sortOptions = ["Most Popular", "Price: Low to High", "Price: High to Low", "Highest Rated", "Newest First"];
 const badgeFilters = ["Trending", "Bestseller", "Healthy", "New"];

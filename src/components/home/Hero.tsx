@@ -9,7 +9,7 @@ const Hero = () => {
 
       {/* Floating Snacks Elements */}
       <div className="absolute inset-0 pointer-events-none select-none z-0">
-        <div className="absolute top-[15%] left-[6%] text-[40px] md:text-[60px] opacity-60 animate-float-slow">🥜</div>
+        <div className="absolute top-[10%] left-[10%] text-[40px] md:text-[60px] opacity-80 -rotate-[5deg] animate-float-slow">🥜</div>
         <div className="absolute top-[18%] right-[8%] text-[38px] md:text-[55px] opacity-70 -rotate-12 animate-float-slow [animation-delay:2s]">🍌</div>
         <div className="absolute top-[55%] left-[18%] text-[28px] md:text-[38px] opacity-60 animate-float-slow [animation-delay:1s]">🌶️</div>
         <div className="absolute top-[48%] right-[25%] text-[33px] md:text-[45px] opacity-80 animate-float-slow [animation-delay:3s]">🍿</div>

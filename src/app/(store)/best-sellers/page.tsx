@@ -3,8 +3,8 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { ChevronDown, Filter, X, ShoppingCart, Star } from "lucide-react";
-import { products, categories } from "../../data/products";
-import { ProductCard } from "../../components/ProductCard"; // Reusable Card use kiya hai
+import { products, categories } from "../../../data/products";
+import { ProductCard } from "../../../components/ProductCard"; // Reusable Card use kiya hai
 
 const sortOptions = [
   "Most Popular",

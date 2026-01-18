@@ -48,8 +48,7 @@ const Categories = () => {
                   shadow-[0_4px_20px_rgba(0,0,0,0.03)]
                   /* Hover background color from image_a69f54.png */
                   hover:bg-[#fdf7ed] 
-                  hover:shadow-[0_20px_40px_rgba(0,0,0,0.06)]
-                  hover:-translate-y-1.5
+                 
                 "
               >
                 {/* Icon Section */}

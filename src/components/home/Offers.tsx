@@ -96,8 +96,7 @@ const Offers = () => {
                 px-7 py-6 md:px-9 md:py-6
                 overflow-hidden
                 shadow-[0_6px_24px_rgba(0,0,0,0.05)]
-                hover:shadow-[0_22px_45px_rgba(0,0,0,0.12)]
-                hover:-translate-y-2
+               
                 transition-all duration-500
                 flex flex-col
                 min-h-[210px] md:min-h-[230px]

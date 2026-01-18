@@ -30,7 +30,7 @@ export default function CartPage() {
         {/* Button */}
         <Link
           href="/products"
-          className="inline-flex items-center gap-3 bg-[#f3a921] hover:bg-[#e27c29] text-black hover:text-white font-bold px-8 py-4 rounded-2xl transition-all duration-300 shadow-md hover:shadow-lg"
+            className="inline-flex items-center gap-3 bg-[#f3a921]  text-black font-bold px-8 py-3 rounded-2xl transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-1 active:scale-95"
         >
           Browse Products
           <ArrowRight size={20} />

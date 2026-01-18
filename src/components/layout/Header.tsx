@@ -68,13 +68,11 @@ export default function Header() {
               <button className="hidden sm:flex h-10 w-10 items-center justify-center rounded-lg hover:bg-orange-50 transition">
                 <Search className={ICON_STYLE} />
               </button>
-
-              {/* SETTINGS - ISME CHANGE KIYA HAI (MOBILE PE NAHI DIKHEGA) */}
-              <Link href="/settings" className="hidden sm:block">
-                <button className="h-10 w-10 flex items-center justify-center rounded-lg hover:bg-orange-50 transition">
-                  <Settings className={ICON_STYLE} />
-                </button>
-              </Link>
+<Link href="/dashboard" className="hidden sm:block">
+  <button title="Admin Dashboard" className="h-10 w-10 flex items-center justify-center rounded-lg hover:bg-orange-50 transition text-gray-600 hover:text-orange-500">
+    <Settings className={ICON_STYLE} />
+  </button>
+</Link>
 
               {/* Cart - Mobile aur Desktop dono pe dikhega */}
               <Link href="/cart" className="relative">
