@@ -7,6 +7,7 @@ import {
   DollarSign,
   XCircle,
   TrendingUp,
+  TrendingDown 
 } from "lucide-react";
 import {
   AreaChart,
@@ -69,38 +70,42 @@ const recentOrders = [
 
 export default function DashboardPage() {
   return (
-    <div className="p-6 space-y-8 bg-[#F9F8F3] min-h-screen w-full overflow-x-hidden">
+    // Padding mobile ke liye p-4 di hai
+    <div className="space-y-6 bg-[#F9F8F3] min-h-screen w-full overflow-x-hidden">
 
       {/* ================= STATS ================= */}
+      {/* sm:grid-cols-2 lg:grid-cols-4 ensure karta hai ki grid auto-adjust ho */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {stats.map((stat, i) => (
           <div
             key={i}
-            className="bg-white p-7 rounded-2xl shadow-sm h-[150px] flex flex-col justify-between"
+            className="bg-white p-6 rounded-[28px] shadow-sm h-[170px] flex flex-col justify-between"
           >
-            <div className="flex items-center justify-between">
+            <div className="flex items-start justify-between">
               <div
-                className="w-12 h-12 rounded-xl flex items-center justify-center"
+                className="w-12 h-12 rounded-2xl flex items-center justify-center"
                 style={{ backgroundColor: stat.bg }}
               >
                 <stat.icon size={22} style={{ color: stat.color }} />
               </div>
 
               {stat.trend && (
-                <div className="flex items-center text-xs font-semibold text-green-700 bg-green-100 px-2 py-1 rounded-lg">
+                <div className={`flex items-center text-[14px] font-bold ${stat.isCancel ? 'text-[#D32F2F]' : 'text-[#2E7D32]'}`}>
                   {stat.trend}
-                  <TrendingUp className="ml-1 h-3 w-3" />
+                  {stat.isCancel ? (
+                    <TrendingDown className="ml-1 h-4 w-4" />
+                  ) : (
+                    <TrendingUp className="ml-1 h-4 w-4" />
+                  )}
                 </div>
-              )}
-
-              {stat.isCancel && (
-                <XCircle className="h-5 w-5 text-red-400" />
               )}
             </div>
 
-            <div>
-              <h3 className="text-3xl font-bold text-gray-900">{stat.value}</h3>
-              <p className="text-xs mt-1 uppercase tracking-wider text-gray-400 font-semibold">
+            <div className="mt-auto">
+              <h3 className="text-[28px] font-bold text-[#111111] leading-none mb-1.5">
+                {stat.value}
+              </h3>
+              <p className="text-[15px] text-[#888077] font-medium">
                 {stat.label}
               </p>
             </div>
@@ -109,88 +114,44 @@ export default function DashboardPage() {
       </div>
 
       {/* ================= CHARTS SECTION ================= */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 w-full">
-        
-        {/* Sales Overview Card */}
-        <div className="bg-white p-8 rounded-[32px] shadow-sm border border-gray-100 min-w-0">
-          <h3 className="text-2xl font-bold text-black mb-8">Sales Overview</h3>
-          <div className="h-[320px] w-full">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8 items-start">
+
+        {/* Sales Overview */}
+        <div className="bg-white rounded-[24px] p-6 shadow-sm border border-gray-50 flex flex-col h-[320px]">
+          <h3 className="text-[20px] font-bold text-[#1A1A1A] mb-4">Sales Overview</h3>
+          <div className="flex-1 w-full overflow-hidden">
             <ResponsiveContainer width="100%" height="100%">
-              <AreaChart data={salesData} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
-                <CartesianGrid strokeDasharray="3 3" vertical={true} stroke="#f0f0f0" />
-                <XAxis 
-                  dataKey="name" 
-                  axisLine={{ stroke: '#E5E7EB' }} 
-                  tickLine={false} 
-                  tick={{ fill: '#9CA3AF', fontSize: 13 }}
-                  dy={10}
-                />
-                <YAxis 
-                  domain={[0, 4]}
-                  axisLine={{ stroke: '#E5E7EB' }} 
-                  tickLine={false} 
-                  tick={{ fill: '#9CA3AF', fontSize: 13 }}
-                />
+              <AreaChart data={salesData} margin={{ top: 10, right: 10, left: -25, bottom: 0 }}>
+                <CartesianGrid strokeDasharray="4 4" vertical={true} horizontal={true} stroke="#E5E1DA" />
+                <XAxis dataKey="name" axisLine={{ stroke: "#C2BCB2", strokeWidth: 1 }} tickLine={false} tick={{ fill: "#8B8479", fontSize: 12, fontWeight: 500 }} dy={8} />
+                <YAxis domain={[0, 4]} ticks={[0, 1, 2, 3, 4]} axisLine={{ stroke: "#C2BCB2", strokeWidth: 1 }} tickLine={false} tick={{ fill: "#8B8479", fontSize: 12, fontWeight: 500 }} />
                 <Tooltip />
-                <Area
-                  type="monotone"
-                  dataKey="sales"
-                  stroke="#f59e0b"
-                  fill="transparent"
-                  strokeWidth={4}
-                  dot={{ r: 5, fill: '#f59e0b', strokeWidth: 2, stroke: '#fff' }}
-                />
+                <Area type="monotone" dataKey="sales" stroke="#F59E0B" fill="transparent" strokeWidth={2.5} dot={false} />
               </AreaChart>
             </ResponsiveContainer>
           </div>
         </div>
 
-  {/* Top Products Card - Square Corners with X-Axis Numbers */}
-<div className="bg-white p-8 shadow-sm border border-gray-100 min-w-0 rounded-none"> 
-  {/* ^ 'rounded-none' se square corners aayenge */}
-  
-  <h3 className="text-2xl font-bold text-black mb-8 text-left">Top Products</h3>
-  <div className="h-[320px] w-full">
-    <ResponsiveContainer width="100%" height="100%">
-      <BarChart 
-        data={topProducts} 
-        layout="vertical" 
-        margin={{ top: 5, right: 30, left: 20, bottom: 20 }}
-      >
-        <CartesianGrid strokeDasharray="3 3" horizontal={false} stroke="#f0f0f0" />
-        
-        {/* X-Axis ko dikhane ke liye 'hide' hata diya hai */}
-        <XAxis 
-          type="number" 
-          axisLine={{ stroke: '#E5E7EB' }}
-          tickLine={false}
-          tick={{ fill: '#9CA3AF', fontSize: 12 }}
-        />
-        
-        <YAxis 
-          type="category" 
-          dataKey="name" 
-          axisLine={{ stroke: '#E5E7EB' }} 
-          tickLine={false}
-          width={150}
-          tick={{ 
-            fill: '#4B5563', 
-            fontSize: 12, 
-            fontWeight: 500,
-            textAnchor: 'end' 
-          }}
-        />
-        <Tooltip cursor={{ fill: '#f9fafb' }} />
-        <Bar 
-          dataKey="sales" 
-          fill="#bc4a26" 
-          barSize={32} 
-          radius={0} 
-        />
-      </BarChart>
-    </ResponsiveContainer>
-  </div>
-</div>
+        {/* Top Products */}
+        <div className="bg-white rounded-[20px] p-6 shadow-sm border border-gray-50 flex flex-col h-[320px]">
+          <h3 className="text-[20px] font-bold text-[#1A1A1A] mb-4">Top Products</h3>
+          <div className="flex-1 w-full overflow-hidden">
+            <ResponsiveContainer width="100%" height="100%">
+              <BarChart data={topProducts} layout="vertical" margin={{ top: 5, right: 20, left: 5, bottom: 5 }}>
+                <CartesianGrid strokeDasharray="4 4" horizontal={true} vertical={true} stroke="#E5E1DA" />
+                <XAxis type="number" domain={[0, 20]} ticks={[0, 5, 10, 15, 20]} axisLine={{ stroke: "#C2BCB2", strokeWidth: 1 }} tickLine={false} tick={{ fill: "#8B8479", fontSize: 12, fontWeight: 500 }} />
+                <YAxis type="category" dataKey="name" axisLine={{ stroke: "#C2BCB2", strokeWidth: 1 }} tickLine={false} width={90} tick={{ fill: "#7E7770", fontSize: 11, fontWeight: 600 }} interval={0} />
+                <Tooltip 
+                  cursor={false} 
+                  contentStyle={{ borderRadius: '10px', border: 'none', boxShadow: '0 4px 12px rgba(0,0,0,0.1)', padding: '10px' }}
+                  labelStyle={{ color: '#000000', marginBottom: '4px' }}
+                  itemStyle={{ color: '#C65127', fontWeight: '600' }}
+                />
+                <Bar dataKey="sales" fill="#C65127" barSize={20} radius={[0, 4, 4, 0]} />
+              </BarChart>
+            </ResponsiveContainer>
+          </div>
+        </div>
       </div>
 
       {/* ================= BOTTOM SECTION ================= */}
@@ -200,10 +161,10 @@ export default function DashboardPage() {
         <div className="bg-white rounded-3xl p-6 shadow-sm min-w-0">
           <h3 className="text-lg font-semibold text-[#1A1A1A] mb-4">Category Performance</h3>
           <div className="flex flex-col items-center gap-5">
-            <div className="w-[200px] h-[200px]">
+            <div className="w-[180px] h-[180px] sm:w-[200px] sm:h-[200px]">
               <ResponsiveContainer width="100%" height="100%">
                 <PieChart>
-                  <Pie data={categoryData} dataKey="value" innerRadius={70} outerRadius={95} paddingAngle={3}>
+                  <Pie data={categoryData} dataKey="value" innerRadius={60} outerRadius={85} paddingAngle={3}>
                     {categoryData.map((item, i) => <Cell key={i} fill={item.color} />)}
                   </Pie>
                   <Tooltip formatter={(value) => `₹${value}`} />
@@ -224,36 +185,38 @@ export default function DashboardPage() {
           </div>
         </div>
 
-        {/* Recent Orders */}
-        <div className="bg-white rounded-3xl p-6 shadow-sm lg:col-span-2 min-w-0 overflow-x-auto">
+        {/* Recent Orders - Added overflow-x-auto for mobile scrolling */}
+        <div className="bg-white rounded-3xl p-6 shadow-sm lg:col-span-2 min-w-0 overflow-hidden">
           <div className="flex items-center justify-between mb-4">
             <h3 className="text-lg font-semibold text-[#1A1A1A]">Recent Orders</h3>
             <button className="text-sm font-medium text-[#FF9F1C] hover:underline">View All</button>
           </div>
-          <table className="w-full text-sm min-w-[500px]">
-            <thead>
-              <tr className="border-b text-[#9B7C66] text-left">
-                <th className="pb-3 font-medium">Order ID</th>
-                <th className="pb-3 font-medium">Customer</th>
-                <th className="pb-3 font-medium">Amount</th>
-                <th className="pb-3 font-medium">Status</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y">
-              {recentOrders.map((o) => (
-                <tr key={o.id} className="h-[58px]">
-                  <td className="font-semibold text-[#1A1A1A]">{o.id}</td>
-                  <td className="text-[#7A5E47]">{o.customer}</td>
-                  <td className="font-semibold text-[#1A1A1A]">{o.amount}</td>
-                  <td>
-                    <span className={`px-3 py-1 rounded-full text-xs font-semibold ${o.status === "Pending" ? "bg-[#FFF3E0] text-[#FF9800]" : "bg-[#FCEDEA] text-[#E65100]"}`}>
-                      {o.status}
-                    </span>
-                  </td>
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm min-w-[500px]">
+              <thead>
+                <tr className="border-b text-[#9B7C66] text-left">
+                  <th className="pb-3 font-medium">Order ID</th>
+                  <th className="pb-3 font-medium">Customer</th>
+                  <th className="pb-3 font-medium">Amount</th>
+                  <th className="pb-3 font-medium">Status</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody className="divide-y">
+                {recentOrders.map((o) => (
+                  <tr key={o.id} className="h-[58px]">
+                    <td className="font-semibold text-[#1A1A1A]">{o.id}</td>
+                    <td className="text-[#7A5E47]">{o.customer}</td>
+                    <td className="font-semibold text-[#1A1A1A]">{o.amount}</td>
+                    <td>
+                      <span className={`px-3 py-1 rounded-full text-xs font-semibold ${o.status === "Pending" ? "bg-[#FFF3E0] text-[#FF9800]" : "bg-[#FCEDEA] text-[#E65100]"}`}>
+                        {o.status}
+                      </span>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </div>
