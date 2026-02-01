@@ -12,9 +12,11 @@ export interface Product {
   image: string;
   hoverImage: string;
   category: string;
+  weight: string;
 }
 
-/* Badge color mapping (ProductCard use karta hai) */
+/* ---------------- BADGE STYLES ---------------- */
+
 export const badgeStyles: Record<string, string> = {
   Trending: "bg-red-600",
   Bestseller: "bg-orange-500",
@@ -23,7 +25,8 @@ export const badgeStyles: Record<string, string> = {
   Popular: "bg-purple-600",
 };
 
-/* Categories – WAFERS added */
+/* ---------------- CATEGORIES ---------------- */
+
 export const categories = [
   "All Products",
   "Peanuts",
@@ -32,6 +35,8 @@ export const categories = [
   "Combos",
   "Combo Packs",
 ];
+
+/* ---------------- PRODUCTS ---------------- */
 
 export const products: Product[] = [
   {
@@ -48,6 +53,7 @@ export const products: Product[] = [
     image: "/assets/Bun.jpg",
     hoverImage: "/assets/bun-hover.jpg",
     category: "Peanuts",
+    weight: "200g",
   },
   {
     id: 2,
@@ -63,6 +69,7 @@ export const products: Product[] = [
     image: "/assets/pepper-peanuts.jpg",
     hoverImage: "/assets/bun.jpg",
     category: "Peanuts",
+    weight: "200g",
   },
   {
     id: 3,
@@ -78,6 +85,7 @@ export const products: Product[] = [
     image: "/assets/chips.jpg",
     hoverImage: "/assets/open-chips.jpg",
     category: "Banana Chips",
+    weight: "150g",
   },
   {
     id: 4,
@@ -93,6 +101,7 @@ export const products: Product[] = [
     image: "/assets/chips.jpg",
     hoverImage: "/assets/open-chips.jpg",
     category: "Banana Chips",
+    weight: "150g",
   },
   {
     id: 5,
@@ -108,6 +117,7 @@ export const products: Product[] = [
     image: "/assets/samosha.jpg",
     hoverImage: "/assets/samosha-hover.jpg",
     category: "Combos",
+    weight: "250g",
   },
   {
     id: 6,
@@ -123,6 +133,7 @@ export const products: Product[] = [
     image: "/assets/Pototo-Chips.jpg",
     hoverImage: "/assets/pototo-chips-hover.jpg",
     category: "Wafers",
+    weight: "100g",
   },
   {
     id: 7,
@@ -138,6 +149,7 @@ export const products: Product[] = [
     image: "/assets/Chocolate.jpg",
     hoverImage: "/assets/chocolate-hover.jpg",
     category: "Combo Packs",
+    weight: "500g",
   },
   {
     id: 8,
@@ -153,6 +165,7 @@ export const products: Product[] = [
     image: "/assets/Chocolate.jpg",
     hoverImage: "/assets/chocolate-hover.jpg",
     category: "Combo Packs",
+    weight: "750g",
   },
   {
     id: 9,
@@ -168,6 +181,7 @@ export const products: Product[] = [
     image: "/assets/Chocolate.jpg",
     hoverImage: "/assets/chocolate-hover.jpg",
     category: "Combo Packs",
+    weight: "1kg",
   },
   {
     id: 10,
@@ -183,5 +197,6 @@ export const products: Product[] = [
     image: "/assets/Chocolate.jpg",
     hoverImage: "/assets/chocolate-hover.jpg",
     category: "Combo Packs",
+    weight: "600g",
   },
 ];

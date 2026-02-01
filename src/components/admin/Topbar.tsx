@@ -15,15 +15,20 @@ export default function Topbar() {
   };
 
   return (
-    <header className="h-20 bg-[#F9F8F3] flex items-center justify-between px-10 sticky top-0 z-40">
-      <h1 className="text-2xl font-bold text-[#1A1A1A] tracking-tight">
-        {getTitle()}
-      </h1>
+    <>
+      {/* 1. FIXED HEADER - Pure White aur compact height (h-16) */}
+      <header className="h-16 fixed top-0 right-0 w-[calc(100%-16rem)] bg-white flex items-center justify-between px-10 z-50 border-b border-[#F0F0F0] shadow-">
+        <h1 className="text-xl font-bold text-[#1A1A1A] tracking-tight">
+          {getTitle()}
+        </h1>
 
-      {/* PROFILE CIRCLE FROM VIDEO */}
-      <div className="w-10 h-10 rounded-full bg-[#FEF3C7] flex items-center justify-center text-[#F59E0B] font-bold text-sm border-2 border-white shadow-sm">
-        AD
-      </div>
-    </header>
+        <div className="w-9 h-9 rounded-full bg-[#FEF3C7] flex items-center justify-center text-[#F59E0B] font-bold text-xs border border-white shadow-sm">
+          AD
+        </div>
+      </header>
+
+      {/* 2. GHOST DIV - Height matching header (h-16) taaki content niche hi rahe */}
+      <div className="h-16 w-full" />
+    </>
   );
 }
