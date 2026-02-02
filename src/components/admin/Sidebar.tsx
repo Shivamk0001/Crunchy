@@ -11,6 +11,7 @@ import {
   Package,
   Tag,
   Store,
+  Menu, // Hamburger icon ke liye
 } from "lucide-react";
 
 const menu = [
@@ -37,19 +38,32 @@ export default function Sidebar({ open, setOpen }: { open: boolean; setOpen: (va
         }
       `}</style>
 
+      {/* MOBILE HAMBURGER BUTTON - Sirf tab dikhega jab sidebar band ho aur screen choti ho */}
+      {!open && (
+        <button
+          onClick={() => setOpen(true)}
+          className="lg:hidden fixed top-4 left-4 z-[60] p-2 bg-white border border-gray-100 rounded-xl shadow-md text-[#E5A35C]"
+        >
+          <Menu size={24} />
+        </button>
+      )}
+
       <aside
         className={`fixed top-0 left-0 z-50 h-screen bg-white border-r border-gray-100 transition-all duration-300 ease-in-out flex flex-col
-        ${open ? "w-64" : "w-20"}`}
+        ${open ? "translate-x-0 w-64" : "-translate-x-full lg:translate-x-0 lg:w-20"}
+        lg:fixed`}
       >
         <div className="flex flex-col h-full overflow-hidden">
-          {/* LOGO SECTION - Padding halki kam ki hai (p-6) */}
+          {/* LOGO SECTION */}
           <div className="p-6 flex items-center justify-between shrink-0">
-            <div className={`flex items-center gap-3 transition-all duration-300 ${open ? "opacity-100" : "opacity-0 hidden"}`}>
+            <div className={`flex items-center gap-3 transition-all duration-300 ${open ? "opacity-100" : "lg:opacity-0 lg:hidden"}`}>
               <div className="w-9 h-9 rounded-xl bg-[#E5A35C] flex items-center justify-center text-white shadow-lg shadow-orange-100/50">
                 <LayoutDashboard size={18} />
               </div>
               <span className="font-bold text-lg tracking-tight text-[#1A1A1A]">Admin</span>
             </div>
+            
+            {/* Toggle Button (Chevron) */}
             <button 
               onClick={() => setOpen(!open)}
               className={`p-1.5 rounded-lg bg-gray-50 text-gray-400 hover:text-[#E5A35C] transition-all ${!open && "mx-auto"}`}
@@ -83,7 +97,7 @@ export default function Sidebar({ open, setOpen }: { open: boolean; setOpen: (va
             })}
           </nav>
 
-          {/* FOOTER - Back to store icon fixed here */}
+          {/* FOOTER */}
           <div className="p-4 border-t border-gray-50 shrink-0 mb-2">
             <Link
               href="/"
@@ -104,7 +118,7 @@ export default function Sidebar({ open, setOpen }: { open: boolean; setOpen: (va
       {/* Mobile Overlay */}
       {open && (
         <div 
-          className="fixed inset-0 bg-black/5 z-40 lg:hidden" 
+          className="fixed inset-0 bg-black/20 backdrop-blur-sm z-40 lg:hidden" 
           onClick={() => setOpen(false)}
         />
       )}
