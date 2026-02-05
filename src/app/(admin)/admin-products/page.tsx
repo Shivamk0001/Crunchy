@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import { Search, Plus, ChevronDown, Pencil, Trash2, X } from "lucide-react";
-import { products as productsData } from "@/src/data/products";
+import { products as productsData, badgeStyles } from "@/src/data/products";
 
 export default function ProductsPage() {
   // --- STATES ---
@@ -112,7 +112,7 @@ export default function ProductsPage() {
               <div className="flex items-center justify-between mt-2">
                 <div>
                   <span className="font-bold text-[#1F1F1F]">₹{p.price}</span>
-                  <span className="text-[10px] text-green-600 font-bold ml-2">{p.discount} OFF</span>
+                  <span className="text-[10px] text-green-600 font-bold ml-2">{p.discount}</span>
                 </div>
                 <span className="bg-[#EAF7EE] text-green-700 text-[10px] px-2 py-0.5 rounded-md font-bold">In Stock</span>
               </div>
@@ -131,6 +131,7 @@ export default function ProductsPage() {
                 <th className="px-4 py-4">Category</th>
                 <th className="px-4 py-4">Price</th>
                 <th className="px-4 py-4">Stock</th>
+                <th className="px-4 py-4">Tags</th>
                 <th className="px-4 py-4 text-right">Actions</th>
               </tr>
             </thead>
@@ -151,11 +152,24 @@ export default function ProductsPage() {
                   <td className="px-4 py-4 text-sm font-medium text-[#8B6A4E]">{p.category}</td>
                   <td className="px-4 py-4">
                     <p className="font-bold text-[#1F1F1F] text-base">₹{p.price}</p>
-                    {p.discount && <p className="text-green-600 text-[11px] font-bold">{p.discount} OFF</p>}
+                    {p.discount && <p className="text-green-600 text-[15px] font-bold">{p.discount}</p>}
                   </td>
                   <td className="px-4 py-4">
                     <span className="inline-flex items-center px-3 py-1 rounded-lg bg-[#EAF7EE] text-green-700 text-xs font-bold">In Stock</span>
                   </td>
+                  <td className="px-4 py-4">
+  <div className="flex flex-wrap gap-2">
+    {p.badge.map((tag) => (
+      <span
+        key={tag}
+        className="px-3 py-1 rounded-md bg-[#F3EFE9] text-[#1F1F1F] text-sm font-medium"
+      >
+        {tag}
+      </span>
+    ))}
+  </div>
+</td>
+
                   <td className="px-4 py-4">
                     <div className="flex justify-end gap-4">
                       <button className="p-1 hover:scale-110 transition-transform">

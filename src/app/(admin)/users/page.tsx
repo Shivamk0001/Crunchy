@@ -117,7 +117,11 @@ const CustomersPage = () => {
                 <div className="flex items-center gap-2 text-black font-medium"><MapPin className="h-3.5 w-3.5 text-[#8B7E6D]" /> {customer.city}</div>
               </div>
               <div className="flex justify-between items-center mt-4 pt-3 border-t border-[#F5F5F5]">
-                <span className={`px-3 py-1 rounded-full text-[10px] font-bold ${badge}`}>{customer.orderCount} orders</span>
+                <span className={`px-3 py-1 rounded-full text-[11px] font-bold ${badge}`}>
+  {customer.orderCount} orders
+</span>
+
+
                 <p className="font-bold text-black">₹{customer.totalSpent}</p>
               </div>
             </div>

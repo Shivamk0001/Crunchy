@@ -7,23 +7,12 @@ export interface Product {
   rating: number;
   reviews: number;
   discount: string;
-  badge: "Trending" | "Bestseller" | "Healthy" | "New" | "Popular";
-  badgeColor: string;
+  badge: ("Trending" | "Bestseller" | "Healthy" | "New" | "Popular")[];
   image: string;
   hoverImage: string;
   category: string;
   weight: string;
 }
-
-/* ---------------- BADGE STYLES ---------------- */
-
-export const badgeStyles: Record<string, string> = {
-  Trending: "bg-red-600",
-  Bestseller: "bg-orange-500",
-  Healthy: "bg-green-600",
-  New: "bg-blue-500",
-  Popular: "bg-purple-600",
-};
 
 /* ---------------- CATEGORIES ---------------- */
 
@@ -47,9 +36,8 @@ export const products: Product[] = [
     originalPrice: 199,
     rating: 4.8,
     reviews: 2847,
-    discount: "25% OFF",
-    badge: "Trending",
-    badgeColor: "bg-red-600",
+    discount: "-25%",
+    badge: ["Bestseller", "Trending"],
     image: "/assets/Bun.jpg",
     hoverImage: "/assets/bun-hover.jpg",
     category: "Peanuts",
@@ -63,9 +51,8 @@ export const products: Product[] = [
     originalPrice: 209,
     rating: 4.7,
     reviews: 1934,
-    discount: "24% OFF",
-    badge: "Bestseller",
-    badgeColor: "bg-orange-500",
+    discount: "-24%",
+    badge: ["Trending", "New"],
     image: "/assets/pepper-peanuts.jpg",
     hoverImage: "/assets/bun.jpg",
     category: "Peanuts",
@@ -79,9 +66,8 @@ export const products: Product[] = [
     originalPrice: 169,
     rating: 4.6,
     reviews: 1765,
-    discount: "23% OFF",
-    badge: "Healthy",
-    badgeColor: "bg-green-600",
+    discount: "-23%",
+    badge: ["Healthy"],
     image: "/assets/chips.jpg",
     hoverImage: "/assets/open-chips.jpg",
     category: "Banana Chips",
@@ -95,9 +81,8 @@ export const products: Product[] = [
     originalPrice: 189,
     rating: 4.5,
     reviews: 987,
-    discount: "26% OFF",
-    badge: "New",
-    badgeColor: "bg-blue-500",
+    discount: "-26%",
+    badge: ["New"],
     image: "/assets/chips.jpg",
     hoverImage: "/assets/open-chips.jpg",
     category: "Banana Chips",
@@ -111,9 +96,8 @@ export const products: Product[] = [
     originalPrice: 229,
     rating: 4.9,
     reviews: 3241,
-    discount: "22% OFF",
-    badge: "Bestseller",
-    badgeColor: "bg-orange-500",
+    discount: "-22%",
+    badge: ["Bestseller"],
     image: "/assets/samosha.jpg",
     hoverImage: "/assets/samosha-hover.jpg",
     category: "Combos",
@@ -127,9 +111,8 @@ export const products: Product[] = [
     originalPrice: 129,
     rating: 4.6,
     reviews: 1456,
-    discount: "23% OFF",
-    badge: "Trending",
-    badgeColor: "bg-red-600",
+    discount: "-23%",
+    badge: ["Trending"],
     image: "/assets/Pototo-Chips.jpg",
     hoverImage: "/assets/pototo-chips-hover.jpg",
     category: "Wafers",
@@ -143,9 +126,8 @@ export const products: Product[] = [
     originalPrice: 449,
     rating: 4.8,
     reviews: 1120,
-    discount: "22% OFF",
-    badge: "Popular",
-    badgeColor: "bg-purple-600",
+    discount: "-22%",
+    badge: ["Popular", "Healthy"],
     image: "/assets/Chocolate.jpg",
     hoverImage: "/assets/chocolate-hover.jpg",
     category: "Combo Packs",
@@ -159,9 +141,8 @@ export const products: Product[] = [
     originalPrice: 649,
     rating: 4.9,
     reviews: 2140,
-    discount: "23% OFF",
-    badge: "Bestseller",
-    badgeColor: "bg-orange-500",
+    discount: "-23%",
+    badge: ["Bestseller"],
     image: "/assets/Chocolate.jpg",
     hoverImage: "/assets/chocolate-hover.jpg",
     category: "Combo Packs",
@@ -175,9 +156,8 @@ export const products: Product[] = [
     originalPrice: 1099,
     rating: 4.8,
     reviews: 760,
-    discount: "18% OFF",
-    badge: "Trending",
-    badgeColor: "bg-red-600",
+    discount: "-18%",
+    badge: ["Trending", "Popular"],
     image: "/assets/Chocolate.jpg",
     hoverImage: "/assets/chocolate-hover.jpg",
     category: "Combo Packs",
@@ -191,9 +171,8 @@ export const products: Product[] = [
     originalPrice: 749,
     rating: 4.7,
     reviews: 1345,
-    discount: "20% OFF",
-    badge: "Healthy",
-    badgeColor: "bg-green-600",
+    discount: "-20%",
+    badge: ["Healthy", "New"],
     image: "/assets/Chocolate.jpg",
     hoverImage: "/assets/chocolate-hover.jpg",
     category: "Combo Packs",
