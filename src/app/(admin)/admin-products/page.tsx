@@ -3,14 +3,46 @@
 import { useState } from "react";
 import Image from "next/image";
 import { Search, Plus, ChevronDown, Pencil, Trash2, X } from "lucide-react";
-import { products as productsData, badgeStyles } from "@/src/data/products";
+import { products as productsData } from "@/src/data/products";
 
 export default function ProductsPage() {
   // --- STATES ---
   const [search, setSearch] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All Products");
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  
+  const [isEditMode, setIsEditMode] = useState(false);
+
+const handleEditProduct = (product) => {
+  setIsEditMode(true);
+  setFormData({
+    name: product.name,
+    category: product.category,
+    price: product.price,
+    originalPrice: product.originalPrice || "",
+    weight: product.weight || "",
+    imageUrl: product.image || "",
+    shortDesc: product.shortDesc || "",
+    fullDesc: product.fullDesc || "",
+    inStock: product.inStock ?? true,
+    featured: product.featured ?? false,
+    bestSeller: product.bestSeller ?? false,
+    newArrival: product.newArrival ?? false,
+  });
+  setIsModalOpen(true);
+};
+
+
+  const handleSaveProduct = () => {
+  if (isEditMode) {
+    console.log("UPDATE PRODUCT", formData);
+  } else {
+    console.log("ADD PRODUCT", formData);
+  }
+
+  setIsModalOpen(false);
+  setIsEditMode(false);
+};
+
   // Modal States
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isFormCategoryOpen, setIsFormCategoryOpen] = useState(false);
@@ -84,10 +116,28 @@ export default function ProductsPage() {
             )}
           </div>
 
-          <button 
-            onClick={() => setIsModalOpen(true)}
-            className="flex-1 md:flex-none flex items-center justify-center gap-2 bg-[#F9A602] text-white px-6 py-3 rounded-2xl font-bold text-sm shadow-md hover:bg-[#e09502] transition-all"
-          >
+          <button
+  onClick={() => {
+    setIsEditMode(false);
+    setFormData({
+      name: "",
+      category: "Peanuts",
+      price: "",
+      originalPrice: "",
+      weight: "",
+      imageUrl: "",
+      shortDesc: "",
+      fullDesc: "",
+      inStock: true,
+      featured: false,
+      bestSeller: false,
+      newArrival: false,
+    });
+    setIsModalOpen(true);
+  }}
+  className="flex-1 md:flex-none flex items-center justify-center gap-2 bg-[#F9A602] text-white px-6 py-3 rounded-2xl font-bold text-sm shadow-md hover:bg-[#e09502] transition-all"
+>
+
             <Plus size={20} /> Add Product
           </button>
         </div>
@@ -172,9 +222,17 @@ export default function ProductsPage() {
 
                   <td className="px-4 py-4">
                     <div className="flex justify-end gap-4">
-                      <button className="p-1 hover:scale-110 transition-transform">
-                        <Pencil size={19} className="text-[#8B6A4E] hover:text-[#F9A602]" />
-                      </button>
+                     <button
+  onClick={() => handleEditProduct(p)}
+  className="p-1 hover:scale-110 transition-transform"
+>
+  <Pencil
+    size={19}
+    className="text-[#8B6A4E] hover:text-[#F9A602]"
+  />
+</button>
+
+
                       <button className="p-1 hover:scale-110 transition-transform">
                         <Trash2 size={19} className="text-red-400 hover:text-red-600" />
                       </button>
@@ -194,7 +252,10 @@ export default function ProductsPage() {
             
             {/* Modal Header */}
             <div className="flex justify-between items-center px-8 py-6 border-b border-[#F0E6DC]">
-              <h2 className="text-xl font-bold text-[#2D1B0F]">Add Product</h2>
+              <h2 className="text-xl font-bold text-[#2D1B0F]">
+  {isEditMode ? "Edit Product" : "Add Product"}
+</h2>
+
               <button 
                 onClick={() => setIsModalOpen(false)} 
                 className="text-[#8B6A4E] hover:bg-[#F7F3EE] p-2 rounded-full transition-colors"
@@ -209,11 +270,17 @@ export default function ProductsPage() {
                 {/* Product Name */}
                 <div className="space-y-1.5">
                   <label className="text-[13px] font-bold text-[#6B4E37] ml-1">Product Name *</label>
-                  <input 
-                    type="text" 
-                    placeholder="Classic Masala Peanuts" 
-                    className="w-full px-4 py-3 rounded-2xl bg-[#F3EFE9] border-none text-[#6B4E37] placeholder-[#A8907E] focus:ring-2 focus:ring-[#F9A602] outline-none transition-all" 
-                  />
+                  <input
+  type="text"
+  value={formData.name}
+  onChange={(e) =>
+    setFormData({ ...formData, name: e.target.value })
+  }
+  className="w-full px-4 py-3 rounded-2xl bg-[#F3EFE9] text-[#6B4E37] placeholder-[#A8907E] focus:ring-2 focus:ring-[#F9A602] outline-none"
+
+/>
+
+
                 </div>
 
                 {/* Category Selector (Inside Modal) */}
@@ -309,9 +376,13 @@ export default function ProductsPage() {
               >
                 Cancel
               </button>
-              <button className="px-8 py-2.5 rounded-xl bg-[#F9A602] text-white font-bold text-sm hover:bg-[#e09502] shadow-md transition-all">
-                Save Product
-              </button>
+              <button
+  onClick={handleSaveProduct}
+  className="px-8 py-2.5 rounded-xl bg-[#F9A602] text-white font-bold text-sm hover:bg-[#e09502]"
+>
+  {isEditMode ? "Update Product" : "Save Product"}
+</button>
+
             </div>
           </div>
         </div>
